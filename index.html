@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justin Fisher — Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0e;
+    --surface: #181816;
+    --border: #2a2a26;
+    --copper: #b87333;
+    --copper-light: #d4956a;
+    --text: #e8e4dc;
+    --muted: #7a7468;
+    --tag-bg: #1e1e1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    padding: 80px 60px 60px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(184,115,51,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 300;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .name span {
+    color: var(--copper);
+    font-style: italic;
+  }
+
+  .title-line {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .contact-row a, .contact-row span {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .contact-row a:hover { color: var(--copper-light); }
+
+  .contact-row .sep {
+    color: var(--border);
+    user-select: none;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding-top: 4px;
+  }
+
+  .about-text {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 640px;
+  }
+
+  /* SKILLS */
+  .skills {
+    padding: 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skills-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .skill-item strong {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--copper-light);
+  }
+
+  /* PROJECTS */
+  .projects {
+    padding: 60px;
+  }
+
+  .projects-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-bottom: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--copper);
+  }
+
+  .project-card-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 320px;
+  }
+
+  .project-card-inner.reverse {
+    direction: rtl;
+  }
+
+  .project-card-inner.reverse > * {
+    direction: ltr;
+  }
+
+  .project-images {
+    background: #0a0a09;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-images.multi {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .project-images.multi .img-slot:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .img-slot {
+    overflow: hidden;
+    background: #0a0a09;
+  }
+
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s, transform 0.4s;
+  }
+
+  .project-card:hover .img-slot img {
+    filter: brightness(1);
+    transform: scale(1.02);
+  }
+
+  .project-images.single img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s, transform 0.4s;
+  }
+
+  .project-card:hover .project-images.single img {
+    filter: brightness(1);
+    transform: scale(1.02);
+  }
+
+  .project-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .project-meta {
+    margin-bottom: 20px;
+  }
+
+  .project-number {
+    font-size: 11px;
+    color: var(--copper);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .project-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: #a09890;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    padding: 4px 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .tag.built {
+    border-color: var(--copper);
+    color: var(--copper-light);
+  }
+
+  /* TEXT-ONLY PROJECT */
+  .project-card.text-only .project-card-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.text-only .project-content {
+    padding: 40px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* DIVIDER LINE */
+  .copper-line {
+    width: 40px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    header, .about, .skills, .projects { padding: 40px 24px; }
+    .about-inner, .skills-inner, .projects-header { grid-template-columns: 1fr; gap: 24px; }
+    .project-card-inner { grid-template-columns: 1fr; }
+    .project-card-inner.reverse { direction: ltr; }
+    .project-images { min-height: 240px; }
+    .contact-row { gap: 16px; }
+    .name { letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="name">Justin <span>Fisher</span></h1>
+    <p class="title-line">Mechanical Engineer</p>
+    <div class="contact-row">
+      <span>(845) 741-5509</span>
+      <span class="sep">/</span>
+      <a href="mailto:JustinFisher2525@gmail.com">JustinFisher2525@gmail.com</a>
+      <span class="sep">/</span>
+      <span>B.S. Mechanical Engineering &mdash; RIT</span>
+    </div>
+  </div>
+</header>
+
+<section class="about">
+  <div class="about-inner">
+    <div class="section-label">About</div>
+    <div>
+      <div class="copper-line"></div>
+      <p class="about-text">I build things and figure out why they don&rsquo;t work. My background spans production fixture design, electromechanical test systems, and independent R&amp;D &mdash; with a consistent focus on taking problems from first principles through physical validation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="skills">
+  <div class="skills-inner">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-item"><strong>Design &amp; CAD</strong>SolidWorks, Fusion 360, Onshape &mdash; GD&amp;T, tolerance stack-ups, production drawings</div>
+      <div class="skill-item"><strong>Fabrication</strong>FDM 3D printing, CNC, fixture &amp; tooling design, electromechanical assembly, soldering</div>
+      <div class="skill-item"><strong>Test &amp; Instrumentation</strong>DAQ, LabVIEW, NI myDAQ, sensors, signal conditioning, piezoelectric transducers</div>
+      <div class="skill-item"><strong>Analysis &amp; Software</strong>MATLAB, Python (pandas, automation), root cause analysis</div>
+      <div class="skill-item"><strong>Documentation</strong>BOMs, SOPs, test plans, production drawings, ECM</div>
+    </div>
+  </div>
+</section>
+
+<section class="projects">
+  <div class="projects-inner">
+    <div class="projects-header">
+      <div class="section-label">Projects</div>
+      <div>
+        <div class="copper-line"></div>
+      </div>
+    </div>
+
+    <!-- PROSTHETIC HAND -->
+    <div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-images multi">
+          <div class="img-slot"><img src="images/hand-photo-1.png" alt="Prosthetic hand prototype"></div>
+          <div class="img-slot"><img src="images/hand-cad-2.png" alt="Palm housing CAD"></div>
+          <div class="img-slot"><img src="images/hand-cad-1.png" alt="Finger segments CAD"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">01 &mdash; Academic</div>
+            <h2 class="project-title">Adaptive Prosthetic Hand</h2>
+            <p class="project-subtitle">Mechanism Design &amp; Prototyping</p>
+            <p class="project-desc">Designed a Whippletree-based hand mechanism to distribute tendon tension proportionally across multiple fingers for natural grip. Managed tight tolerance stack-ups across printed linkage interfaces and hinge geometry. Iterated through multiple FDM prototypes to refine joint behavior and load performance, applying DFM thinking throughout to keep the design manufacturable at low cost.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Built &amp; Tested</span>
+            <span class="tag">Fusion 360</span>
+            <span class="tag">FDM Printing</span>
+            <span class="tag">Mechanism Design</span>
+            <span class="tag">Tolerance Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TUBE CUTTER -->
+    <div class="project-card">
+      <div class="project-card-inner reverse">
+        <div class="project-images multi">
+          <div class="img-slot"><img src="images/tube-cutter-1.png" alt="Tube cutter top view"></div>
+          <div class="img-slot"><img src="images/tube-cutter-2.png" alt="Tube cutter side view"></div>
+          <div class="img-slot"><img src="images/tube-cutter-3.png" alt="Tube cutter end view"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">02 &mdash; ArcWorks</div>
+            <h2 class="project-title">Medical Tube Cutting Fixture</h2>
+            <p class="project-subtitle">ISO 7 Cleanroom Production Tooling</p>
+            <p class="project-desc">Designed and fabricated a production cutting fixture for silicone tubing manufactured for Thermo Fisher Scientific, deployed in an ISO 7 cleanroom. A V-groove channel locates and centers tubing consistently; slotted walls at 3, 6, 12, 14, and 28 inch intervals guide the blade for repeatable hands-free cuts. Used extensively in production.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Production Deployed</span>
+            <span class="tag">Onshape</span>
+            <span class="tag">FDM Printing</span>
+            <span class="tag">ISO 7 Cleanroom</span>
+            <span class="tag">Thermo Fisher</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAG SEALER -->
+    <div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-images multi">
+          <div class="img-slot"><img src="images/bag-sealer-1.png" alt="Bag sealer isometric"></div>
+          <div class="img-slot"><img src="images/bag-sealer-3.png" alt="Bag sealer with attachment"></div>
+          <div class="img-slot"><img src="images/bag-sealer-2.png" alt="Bag sealer back"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">03 &mdash; ArcWorks</div>
+            <h2 class="project-title">Ziplock Bag Sealing Tool</h2>
+            <p class="project-subtitle">Ergonomic Production Tooling</p>
+            <p class="project-desc">Designed a handheld sealing tool to improve speed and consistency of bag closure for packaging operations. Two hollow cylinders on screws with Y-nuts rotate freely as the bag is pulled through, reducing friction. Screw holes intentionally oversized for gap adjustment across bag thicknesses. Modular attachment extends use to larger bag formats. Produced multiples for floor deployment.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Production Deployed</span>
+            <span class="tag">Onshape</span>
+            <span class="tag">FDM Printing</span>
+            <span class="tag">Ergonomic Design</span>
+            <span class="tag">Modular</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTLE STAND -->
+    <div class="project-card">
+      <div class="project-card-inner reverse">
+        <div class="project-images multi">
+          <div class="img-slot"><img src="images/bottle-stand-1.png" alt="Bottle stand top view"></div>
+          <div class="img-slot"><img src="images/bottle-stand-2.png" alt="Bottle stand side view"></div>
+          <div class="img-slot"><img src="images/bottle-stand-3.png" alt="Bottle stand front view"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">04 &mdash; Independent</div>
+            <h2 class="project-title">Bottle Stand with Spill Management</h2>
+            <p class="project-subtitle">User-Centered Product Design</p>
+            <p class="project-desc">Noticed a recurring floor problem &mdash; liquid beading on bottle exteriors transferred to operators&rsquo; hands during routine handling. Independently designed a standalone stand to address it: raised-wall containment tray, curved bottle cradle, central drain, and an angled slide feature allowing the bottle to be positioned without gripping a wet surface. Modeled in Onshape, FDM printed, brought to the floor.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Built &amp; Used</span>
+            <span class="tag">Onshape</span>
+            <span class="tag">FDM Printing</span>
+            <span class="tag">Self-Initiated</span>
+            <span class="tag">User-Centered</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIRE SPOOLER -->
+    <div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-images multi">
+          <div class="img-slot"><img src="images/spooler-1.png" alt="Spooler frame"></div>
+          <div class="img-slot"><img src="images/spooler-2.png" alt="Spooler axle"></div>
+          <div class="img-slot"><img src="images/spooler-3.png" alt="Spooler crank"></div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">05 &mdash; ArcWorks</div>
+            <h2 class="project-title">Paper Towel Roll Wire Spooler</h2>
+            <p class="project-subtitle">Low-Cost Multi-Part Assembly</p>
+            <p class="project-desc">Designed a wire spooling tool that converts a standard paper towel roll into a functional spool, eliminating the need for purpose-built hardware. Internal mandrel locks the roll on an axle; external clips prevent lateral movement; an L-shaped crank with set-screw socket drives spooling by hand. Multi-part printed assembly designed around zero-cost spool bodies.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Built &amp; Used</span>
+            <span class="tag">Onshape</span>
+            <span class="tag">FDM Printing</span>
+            <span class="tag">Multi-Part Assembly</span>
+            <span class="tag">Cost-Conscious</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIOREACTOR -->
+    <div class="project-card text-only">
+      <div class="project-card-inner">
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">06 &mdash; Senior Design</div>
+            <h2 class="project-title">Bioreactor System</h2>
+            <p class="project-subtitle">Mechatronic System Integration</p>
+            <p class="project-desc">Led mechanical design, sensor integration, and fluid handling layout for a working bioreactor system across integrated mechanical, electrical, and software subsystems. Served as purchasing manager, sourcing components against budget and lead time constraints. Validated thermal control performance through physical testing and MATLAB modeling across a cross-functional team.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">Built &amp; Validated</span>
+            <span class="tag">MATLAB</span>
+            <span class="tag">Sensor Integration</span>
+            <span class="tag">Thermal Analysis</span>
+            <span class="tag">Fluid Handling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACOUSTIC INSTRUMENT -->
+    <div class="project-card text-only">
+      <div class="project-card-inner">
+        <div class="project-content">
+          <div class="project-meta">
+            <div class="project-number">07 &mdash; Independent R&amp;D</div>
+            <h2 class="project-title">Acoustic Sensing Instrument</h2>
+            <p class="project-subtitle">From Concept to Commercialization</p>
+            <p class="project-desc">Identified a gap in utility compliance tooling: no field-deployable instrument discriminates pipe wall material during standard service operations. Developed the concept, validated the underlying physics, built a signal chain around a piezoelectric disc transducer, and conducted competitive landscape analysis confirming differentiation from existing approaches. Provisional patent filing in progress.</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag built">In Development</span>
+            <span class="tag">Piezoelectric</span>
+            <span class="tag">Signal Processing</span>
+            <span class="tag">Patent Pending</span>
+            <span class="tag">Independent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>Justin Fisher &mdash; Mechanical Engineer</span>
+    <span>JustinFisher2525@gmail.com &mdash; (845) 741-5509</span>
+  </div>
+</footer>
+
+</body>
+</html>
