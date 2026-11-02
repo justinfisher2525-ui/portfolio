@@ -5,16 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justin Fisher — Mechanical Engineer</title>
 <meta name="description" content="Mechanical engineer. Production fixtures, precision mechanisms and test hardware.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url('archivo-400.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url('archivo-500.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('archivo-600.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url('archivo-700.woff2') format('woff2');}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('plexmono-400.woff2') format('woff2');}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('plexmono-500.woff2') format('woff2');}
+
   :root{
     --paper:#FAFAF7;
-    --panel:#F2F1EC;
+    --panel:#F2F1EC;          /* matches the CAD images' own background */
     --ink:#17181A;
-    --rule:#C9C6BE;
-    --mark:#9E2B20;
+    /* derived from the Onshape model colour #7DA3BC (hue 204) */
+    --blue-deep:#193E57;
+    --blue-mid:#4D7189;
+    --rule:#B6C5CE;
+    --mark:#9E2B20;           /* markup red, numerals only */
     --muted:#6B6861;
   }
 
@@ -40,6 +47,7 @@
   header{padding:92px 0 0;}
 
   .name{
+    color:var(--blue-deep);
     font-size:clamp(50px,10.5vw,124px);
     font-weight:700;
     letter-spacing:-0.04em;
@@ -60,7 +68,7 @@
   .block{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    border-top:1px solid var(--ink);
+    border-top:1px solid var(--blue-deep);
     border-left:1px solid var(--rule);
   }
 
@@ -79,7 +87,7 @@
     font-family:'IBM Plex Mono',monospace;
     font-size:10.5px;
     letter-spacing:0.08em;
-    color:var(--muted);
+    color:var(--blue-mid);
     margin-bottom:6px;
   }
 
@@ -90,7 +98,7 @@
   /* --------------- sheets ---------------- */
 
   .sheet{padding:86px 0 0;}
-  .sheet + .sheet{border-top:1px solid var(--rule);}
+  .sheet + .sheet{border-top:1px solid var(--blue-deep);}
 
   .sheet-head{
     display:flex;
@@ -101,6 +109,7 @@
   }
 
   .sheet-title{
+    color:var(--blue-deep);
     font-size:clamp(28px,4vw,42px);
     font-weight:600;
     letter-spacing:-0.028em;
@@ -110,7 +119,7 @@
   .sheet-where{
     font-family:'IBM Plex Mono',monospace;
     font-size:12.5px;
-    color:var(--muted);
+    color:var(--blue-mid);
   }
 
   .body{max-width:62ch;font-size:16.5px;line-height:1.68;}
@@ -184,7 +193,7 @@
     border-right:1px solid var(--rule);
     font-family:'IBM Plex Mono',monospace;
     font-size:10.5px;
-    color:var(--muted);
+    color:var(--blue-mid);
     padding:5px 11px 6px;
     max-width:90%;
   }
@@ -196,7 +205,7 @@
 
   /* --------------- footer ---------------- */
 
-  footer{margin-top:86px;border-top:1px solid var(--ink);}
+  footer{margin-top:86px;border-top:1px solid var(--blue-deep);}
   .foot{
     display:flex;
     flex-wrap:wrap;
@@ -264,12 +273,12 @@
 
     <div class="row split h-tall">
       <div class="plate photo">
-        <img src="bio-system.jpg" alt="The assembled bioreactor running a live spirulina culture, with aeration line and sensors connected">
-        <span class="cap">Integrated system under culture</span>
+        <img src="bio-system.jpg" alt="The bioreactor running in the lab: the grow-light frame carrying vertical LED strips around glass vessels of bright green spirulina culture, with aeration tubing and control electronics alongside">
+        <span class="cap">Grow-light frame in service, spirulina under culture</span>
       </div>
       <div class="plate">
         <img src="bio-frame.jpg" alt="CAD model of the grow-light frame: two rings carrying vertical LED tubes around the vessel">
-        <span class="cap">Grow-light frame</span>
+        <span class="cap">Grow-light frame — CAD</span>
       </div>
     </div>
 
